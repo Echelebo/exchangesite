@@ -1,8 +1,5 @@
 
-<?php
-header('Location: http://tbc009.online/login');
-exit();
-?>
+
 
 <!DOCTYPE html>
 <html lang="en" style="height: 100%;">
