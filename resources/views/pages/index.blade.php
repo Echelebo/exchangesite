@@ -1,1058 +1,118 @@
-@php
-    use App\Models\DepositCoin;
-    use App\Models\Bot;
-    use Faker\Factory as Faker;
-
-    $page_title = 'Home';
-    $faker = Faker::create();
-    $logos = DepositCoin::inRandomOrder()->take(20)->get('logo_url');
-
-    $bots = Bot::get();
-
-    $deposit_methods = ['usdttrc20'];
-    $methods = DepositCoin::where('status', 1)->get();
-    foreach ($methods as $method) {
-        array_push($deposit_methods, $method->code);
-    }
-
-    // Check if the count is less than 20
-    while (count($deposit_methods) < 20) {
-        $deposit_methods[] = 'usdttrc20';
-    }
-
-    $actions = [
-        'deposited',
-        'withdrew',
-        'withdrew',
-        'deposited',
-        'withdrew',
-        'deposited',
-        'withdrew',
-        'withdrew',
-        'withdrew',
-        'withdrew',
-        'withdrew',
-        'withdrew',
-    ];
-
-    $whys = [
-        'Cutting-Edge Precision',
-        'Trendsetter Advantage',
-        'Adaptive Excellence',
-        'Seamless Profits',
-        'Data-Driven Triumph',
-        'Strategic Partner',
-        'Constant Success',
-        'Market Pioneer',
-        'Automated Mastery',
-    ];
-    $reviews = [
-        site('name') .
-        "'s precision trading is a game-changer, consistently delivering impressive profits. I trust it for my financial success.",
-        'Effortless trading with ' .
-        site('name') .
-        '. Its adaptability and data-driven approach make it a standout choice. Highly recommended!',
-        'Seamless trades, constant profits - ' .
-        site('name') .
-        " simplifies trading. It's a must-have for anyone in the market.",
-        site('name') .
-        "'s innovative strategies and consistent returns have transformed my trading experience. It's a valuable asset to any trader.",
-        'I rely on ' .
-        site('name') .
-        " for its adaptability in fluctuating markets. It's a proven partner in achieving financial goals.",
-        site('name') .
-        "'s automated precision is remarkable. It's a powerful tool for navigating today's complex trading landscape.",
-        'Maximized profits with ' .
-        site('name') .
-        '. Its results speak volumes. A reliable and intelligent trading companion.',
-        'Trading with ' .
-        site('name') .
-        ' is effortless and rewarding. It adapts to market changes seamlessly. Truly impressive!',
-        site('name') .
-        ' has changed my trading game. Its data-driven approach delivers consistent gains. An invaluable tool for success.',
-        'Effortless trading made possible by ' .
-        site('name') .
-        ' .  Its strategic prowess sets it apart. A game-changer for traders.',
-    ];
-
-    $short_description = site('seo_description');
-
-@endphp
-
 @extends('layouts.front')
 
 
 @section('contents')
-    <!-- Banner slides -->
-    <div class="banner-slides-wrapper arrow-nav-overflow" data-dots="true" data-nav="true">
 
-        <div class="banner-slides-container owl-carousel owl-theme owl-dot-light-1 owl-loaded">
-
-            <!-- Slide item -->
-
-
-            <!-- Slide item -->
-
-
-
-
-            <div class="owl-stage-outer owl-height" style="height: 562.953px;">
-                <div class="owl-stage"
-                    style="transform: translate3d(-1216px, 0px, 0px); transition: all 0s ease 0s; width: 3648px;">
-                    <div class="owl-item cloned" style="width: 608px;">
-                        <div class="d-flex flex-column">
-                            <div class="page-header-block-height d-flex align-items-center bg-image"
-                                data-img-src="/prime/assets/images/upload/section-banner-slide-01.jpg"
-                                style="background-image: url(&quot;/prime/assets/images/upload/section-banner-slide-01.jpg&quot;);">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-lg-8 offset-lg-2 text-center py-5">
-                                            <div class="px-md-5 px-lg-0 px-xl-5 py-5 overflow-hidden">
-                                                <h2 class="h3 font-weight-300 text-white slide-animate animated fadeInLeft"
-                                                    data-animated="fadeInLeft">Your Success is Our Business</h2>
-                                                <h1 class="display-4 font-weight-800 text-white mb-3 slide-animate animated fadeInRight"
-                                                    data-animated="fadeInRight">Welcome to<br> Ligrace Holdings Ltd
-                                                </h1>
-                                                <div class="lead-sm text-white-75 pb-2 pb-xl-3 mb-5 slide-animate animated fadeInLeft"
-                                                    data-animated="fadeInLeft">Our ambition has always been to help
-                                                    deliver the message of sustainability for many of our clients.
-                                                </div>
-                                                <div class="slide-animate animated fadeIn" data-animated="fadeIn">
-                                                    <a href="{{ route('user.login') }}"
-                                                        class="btn btn-lg btn-round btn-secondary btn-gray-shadow mx-2">Login</a>
-                                                </div>
-                                                <div class="slide-animate animated fadeIn" data-animated="fadeIn">
-                                                    <a href="{{ route('user.register') }}"
-                                                        class="btn btn-lg btn-round btn-secondary btn-gray-shadow mx-2">Register</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item cloned" style="width: 608px;">
-                        <div class="d-flex flex-column">
-                            <div class="page-header-block-height d-flex align-items-center bg-image"
-                                data-img-src="/prime/assets/images/upload/section-banner-slide-02.jpg"
-                                style="background-image: url(&quot;/prime/assets/images/upload/section-banner-slide-02.jpg&quot;);">
-                                <div class="container">
-                                    <div class="row">
-                                        <div
-                                            class="col-lg-8 offset-lg-2 col-xl-6 offset-xl-6 text-center text-xl-left py-5">
-                                            <div class="px-md-5 pr-lg-0 pl-lg-3 ml-lg-n3 py-5 overflow-hidden">
-                                                <h2 class="h3 font-weight-300 text-white slide-animate animated fadeInLeft"
-                                                    data-animated="fadeInLeft">Consulting &amp; Investment</h2>
-                                                <h1 class="display-4 font-weight-800 text-white mb-3 slide-animate animated fadeInRight"
-                                                    data-animated="fadeInRight">Get Your Business<br>Right Up There</h1>
-                                                <div class="lead-sm text-white-75 pb-2 pb-xl-3 mb-5 slide-animate animated fadeInLeft"
-                                                    data-animated="fadeInLeft">We believe that to succeed, modern mining
-                                                    companies must embrace and integrate environmental, social and
-                                                    economic considerations in all business decisions.</div>
-                                                <div class="slide-animate animated fadeIn" data-animated="fadeIn">
-                                                    <a href="{{ route('user.login') }}"
-                                                        class="btn btn-lg btn-round btn-secondary btn-gray-shadow mx-2">Login</a>
-                                                </div>
-                                                <div class="slide-animate animated fadeIn" data-animated="fadeIn">
-                                                    <a href="{{ route('user.register') }}"
-                                                        class="btn btn-lg btn-round btn-secondary btn-gray-shadow mx-2">Signup</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item active" style="width: 608px;">
-                        <div class="d-flex flex-column">
-                            <div class="page-header-block-height d-flex align-items-center bg-image"
-                                data-img-src="/prime/assets/images/upload/section-banner-slide-01.jpg"
-                                style="background-image: url(&quot;/prime/assets/images/upload/section-banner-slide-01.jpg&quot;);">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-lg-8 offset-lg-2 text-center py-5">
-                                            <div class="px-md-5 px-lg-0 px-xl-5 py-5 overflow-hidden">
-                                                <h2 class="h3 font-weight-300 text-white slide-animate animated fadeInLeft"
-                                                    data-animated="fadeInLeft">Your Success is Our Business</h2>
-                                                <h1 class="display-4 font-weight-800 text-white mb-3 slide-animate animated fadeInRight"
-                                                    data-animated="fadeInRight">Welcome to<br> Ligrace Holdings Ltd
-                                                </h1>
-                                                <div class="lead-sm text-white-75 pb-2 pb-xl-3 mb-5 slide-animate animated fadeInLeft"
-                                                    data-animated="fadeInLeft">Our ambition has always been to help
-                                                    deliver the message of sustainability for many of our clients.
-                                                </div>
-                                                <div class="slide-animate animated fadeIn" data-animated="fadeIn">
-                                                    <a href="{{ route('user.login') }}"
-                                                        class="btn btn-lg btn-round btn-secondary btn-gray-shadow mx-2">Login</a>
-                                                </div>
-                                                <div class="slide-animate animated fadeIn" data-animated="fadeIn">
-                                                    <a href="{{ route('user.register') }}"
-                                                        class="btn btn-lg btn-round btn-secondary btn-gray-shadow mx-2">Register</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item" style="width: 608px;">
-                        <div class="d-flex flex-column">
-                            <div class="page-header-block-height d-flex align-items-center bg-image"
-                                data-img-src="/prime/assets/images/upload/section-banner-slide-02.jpg"
-                                style="background-image: url(&quot;/prime/assets/images/upload/section-banner-slide-02.jpg&quot;);">
-                                <div class="container">
-                                    <div class="row">
-                                        <div
-                                            class="col-lg-8 offset-lg-2 col-xl-6 offset-xl-6 text-center text-xl-left py-5">
-                                            <div class="px-md-5 pr-lg-0 pl-lg-3 ml-lg-n3 py-5 overflow-hidden">
-                                                <h2 class="h3 font-weight-300 text-white slide-animate animated fadeInLeft"
-                                                    data-animated="fadeInLeft">Consulting &amp; Investment</h2>
-                                                <h1 class="display-4 font-weight-800 text-white mb-3 slide-animate animated fadeInRight"
-                                                    data-animated="fadeInRight">Get Your Business<br>Right Up There</h1>
-                                                <div class="lead-sm text-white-75 pb-2 pb-xl-3 mb-5 slide-animate animated fadeInLeft"
-                                                    data-animated="fadeInLeft">We believe that to succeed, modern mining
-                                                    companies must embrace and integrate environmental, social and
-                                                    economic considerations in all business decisions.</div>
-                                                <div class="slide-animate animated fadeIn" data-animated="fadeIn">
-                                                    <a href="{{ route('user.login') }}"
-                                                        class="btn btn-lg btn-round btn-secondary btn-gray-shadow mx-2">Login</a>
-                                                </div>
-                                                <div class="slide-animate animated fadeIn" data-animated="fadeIn">
-                                                    <a href="{{ route('user.register') }}"
-                                                        class="btn btn-lg btn-round btn-secondary btn-gray-shadow mx-2">Signup</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item cloned" style="width: 608px;">
-                        <div class="d-flex flex-column">
-                            <div class="page-header-block-height d-flex align-items-center bg-image"
-                                data-img-src="/prime/assets/images/upload/section-banner-slide-01.jpg"
-                                style="background-image: url(&quot;/prime/assets/images/upload/section-banner-slide-01.jpg&quot;);">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-lg-8 offset-lg-2 text-center py-5">
-                                            <div class="px-md-5 px-lg-0 px-xl-5 py-5 overflow-hidden">
-                                                <h2 class="h3 font-weight-300 text-white slide-animate animated fadeInLeft"
-                                                    data-animated="fadeInLeft">Your Success is Our Business</h2>
-                                                <h1 class="display-4 font-weight-800 text-white mb-3 slide-animate animated fadeInRight"
-                                                    data-animated="fadeInRight">Welcome to<br> Ligrace Holdings Ltd
-                                                </h1>
-                                                <div class="lead-sm text-white-75 pb-2 pb-xl-3 mb-5 slide-animate animated fadeInLeft"
-                                                    data-animated="fadeInLeft">Our ambition has always been to help
-                                                    deliver the message of sustainability for many of our clients.
-                                                </div>
-                                                <div class="slide-animate animated fadeIn" data-animated="fadeIn">
-                                                    <a href="{{ route('user.login') }}"
-                                                        class="btn btn-lg btn-round btn-secondary btn-gray-shadow mx-2">Login</a>
-                                                </div>
-                                                <div class="slide-animate animated fadeIn" data-animated="fadeIn">
-                                                    <a href="{{ route('user.register') }}"
-                                                        class="btn btn-lg btn-round btn-secondary btn-gray-shadow mx-2">Register</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item cloned" style="width: 608px;">
-                        <div class="d-flex flex-column">
-                            <div class="page-header-block-height d-flex align-items-center bg-image"
-                                data-img-src="/prime/assets/images/upload/section-banner-slide-02.jpg"
-                                style="background-image: url(&quot;/prime/assets/images/upload/section-banner-slide-02.jpg&quot;);">
-                                <div class="container">
-                                    <div class="row">
-                                        <div
-                                            class="col-lg-8 offset-lg-2 col-xl-6 offset-xl-6 text-center text-xl-left py-5">
-                                            <div class="px-md-5 pr-lg-0 pl-lg-3 ml-lg-n3 py-5 overflow-hidden">
-                                                <h2 class="h3 font-weight-300 text-white slide-animate animated fadeInLeft"
-                                                    data-animated="fadeInLeft">Consulting &amp; Investment</h2>
-                                                <h1 class="display-4 font-weight-800 text-white mb-3 slide-animate animated fadeInRight"
-                                                    data-animated="fadeInRight">Get Your Business<br>Right Up There</h1>
-                                                <div class="lead-sm text-white-75 pb-2 pb-xl-3 mb-5 slide-animate animated fadeInLeft"
-                                                    data-animated="fadeInLeft">We believe that to succeed, modern mining
-                                                    companies must embrace and integrate environmental, social and
-                                                    economic considerations in all business decisions.</div>
-                                                <div class="slide-animate animated fadeIn" data-animated="fadeIn">
-                                                    <a href="{{ route('user.login') }}"
-                                                        class="btn btn-lg btn-round btn-secondary btn-gray-shadow mx-2">Login</a>
-                                                </div>
-                                                <div class="slide-animate animated fadeIn" data-animated="fadeIn">
-                                                    <a href="{{ route('user.register') }}"
-                                                        class="btn btn-lg btn-round btn-secondary btn-gray-shadow mx-2">Signup</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<hr class="space">
+    <div id="boxcoin-exchange-init">    <div id="boxcoin-exchange" class="bxc-box">
+        <div id="bxc-panel-start" class="bxc-panel bxc-active">
+            <div class="bxc-title">
+                You send<i id="bxc-invert" class="bxc-icon-shuffle bxc-active"></i>
+            </div>
+            <div id="bxc-send" class="bxc-input bxc-input-select bxc-active">
+                <div class="bxc-1">
+                    <input id="bxc-send-amount" type="number" autocomplete="one-time-code">
+                    <div data-value="btc" data-crypto="true" data-network="btc" data-name="Bitcoin">
+                        <img src="https://boxcoin.dev/demo/admin_exchange/media/icon-btc.svg" alt="btc">
+                        <span>btc</span>
                     </div>
                 </div>
-            </div>
-            <div class="owl-nav">
-                <div class="carousel-custom-nav carousel-nav-lg d-none d-lg-block">
-                    <a class="carousel-control-prev" href="#" data-width="9%" style="width: 9%;">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#" data-width="9%" style="width: 9%;">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div><button type="button" role="presentation" class="owl-prev"><span
-                        aria-label="Previous">‹</span></button><button type="button" role="presentation"
-                    class="owl-next"><span aria-label="Next">›</span></button>
-            </div>
-            <div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button
-                    role="button" class="owl-dot"><span></span></button></div>
-        </div>
-
-        <!-- Navigation -->
-
-
-    </div>
-
-    <!-- Content -->
-    <div class="main-content pb-0">
-
-        <!-- Our services section -->
-        <div class="section">
-            <div class="container">
-
-                <div class="row">
-
-                    <div class="col-lg-7 align-self-center">
-
-                        <div class="mt-4 mb-5">
-
-                            <h5 class="font-weight-400">About US</h5>
-
-                            <div data-height="3px" style="height: 3px;"></div>
-
-                            <h2 class="h1 font-weight-800 mb-4">Plan for the future and beyond </h2>
-
-                            <div class="lead-sm">
-                                We have over 180 investment professionals covering different sectors and are present
-                                globally. This long-established network of people and offices, along with a substantial
-                                industrial presence arising from our portfolio of companies, generate the depth and
-                                breadth of insight and intelligence to allow Bridgepoint to pursue the best
-                                opportunities and support the best companies.
-
-                                After we’ve invested, we serve on portfolio company boards, providing advice to
-                                executives, sharing expertise and experience as well as adding value by participating in
-                                a business’s strategic development. In return, we motivate the managers we back through
-                                equity participation so that they can realise significant financial rewards for the
-                                value they create.
-
-                            </div>
-
-                        </div>
-
-                        <div data-height="15px" style="height: 15px;"></div>
-
-
-
-                        <div data-height="20px" style="height: 20px;"></div>
-
+                <div class="bxc-2">
+                    <div class="bxc-2-1">
+                        <i class="bxc-icon-search"></i>
+                        <input class="bxc-search-input" type="text" name="bxc-search" placeholder="Search..." autocomplete="one-time-code">
+                        <i class="bxc-icon-close"></i>
                     </div>
-
-                    <div class="col-lg-5 align-self-end">
-                        <div class="text-center px-3 px-md-5 px-lg-3">
-                            <iframe width="100%" height="450" src="https://www.youtube.com/embed/NDetuRLQso8"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen=""></iframe>
-
-                        </div>
-                    </div>
-
-                </div>
-
-
-
-            </div>
-        </div>
-
-        <!-- Benefits section -->
-        <div class="section bg-light pb-5 mt-up75">
-
-            <div class="bg-white" data-height="5px" style="height: 5px;"></div>
-
-            <div class="container pt-5">
-                <div class="py-5 my-4">
-
-                    <div data-height="10px" style="height: 10px;"></div>
-
-                    <div class="row align-items-center mt-5">
-
-                        <div class="col-lg-6">
-                            <div class="row pb-4 pb-lg-0 mb-5 mb-lg-0">
-
-                                <div class="col-md-6">
-
-                                    <img src="/prime/assets/images/upload/benefit-image-02.jpg" alt="image"
-                                        class="img-fluid rounded-lg shadow-lg add-animate" data-animated="fadeInDown">
-
-                                    <div data-height="30px" style="height: 30px;"></div>
-
-                                    <div class="bg-secondary text-white-75 rounded-lg shadow-lg p-4 add-animate"
-                                        data-animated="fadeInLeft">
-
-                                        <div class="d-flex align-items-center">
-                                            <h2 class="display-4 text-white font-weight-500 mb-0 mr-2">10</h2>
-                                            <div class="text-uppercase line-height-md font-weight-500">
-                                                Years of<br>Experience
-                                            </div>
-                                        </div>
-
-                                        <div data-height="106px" style="height: 106px;"></div>
-
-                                        <h4 class="text-white font-weight-700 line-height-sm mb-0">Financial Experience
-                                        </h4>
-
-                                    </div>
-
-                                    <div class="d-md-none" data-height="30px" style="height: 30px;"></div>
-
-                                </div>
-
-                                <div class="col-md-6">
-                                    <img src="/prime/assets/images/upload/benefit-image-01.jpg" alt="image"
-                                        class="img-fluid rounded-lg shadow-lg add-animate" data-animated="fadeInUp">
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6">
-                            <div class="px-xl-5">
-                                <div class="pl-lg-3">
-
-                                    <div class="mb-5">
-
-                                        <h5 class="font-weight-400">Our Responsibility</h5>
-
-                                        <div data-height="3px" style="height: 3px;"></div>
-
-                                        <h2 class="h1 font-weight-800 mb-4">Sustainability Approach</h2>
-
-                                        <div class="lead-sm">
-                                            At Ligrace Invest Limited, we commit to provide services we render to our
-                                            clients. This is why we always try to expand our technical capabilities and
-                                            financial turnover with the help of our professional having hands-on
-                                            experience guarantees for gaining profit by generating crypto currencies.
-                                            Ligrace Invest Limited envisions to widen the pool of investors by
-                                            engaging in effective strategic trading of crypto currencies.
-                                        </div>
-
-                                    </div>
-
-
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
+                    <div class="bxc-2-2 bxc-scrollbar">
+                        <span class="bxc-title-ul bxc-title-cryptocurrencies">
+                            Cryptocurrencies                        </span>
+                        <div class="bxc-select-ul"><div data-value="btc" data-crypto="true" data-network="btc" data-name="Bitcoin" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-btc.svg" alt="btc"><div><span>Bitcoin</span><span>BTC • Bitcoin</span></div></div><div data-value="eth" data-crypto="true" data-network="eth" data-name="Ethereum" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-eth.svg" alt="eth"><div><span>Ethereum</span><span>ETH • Ethereum</span></div></div><div data-value="usdt" data-crypto="true" data-network="eth" data-name="Tether" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-usdt.svg" alt="usdt"><div><span>Tether</span><span>USDT • Ethereum</span></div></div><div data-value="usdc" data-crypto="true" data-network="eth" data-name="USD Coin" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-usdc.svg" alt="usdc"><div><span>USD Coin</span><span>USDC • Ethereum</span></div></div><div data-value="link" data-crypto="true" data-network="eth" data-name="Chainlink" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-link.svg" alt="link"><div><span>Chainlink</span><span>LINK • Ethereum</span></div></div><div data-value="shib" data-crypto="true" data-network="eth" data-name="Shiba Inu" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-shib.svg" alt="shib"><div><span>Shiba Inu</span><span>SHIB • Ethereum</span></div></div><div data-value="bat" data-crypto="true" data-network="eth" data-name="Basic Attention Token" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-bat.svg" alt="bat"><div><span>Basic Attention Token</span><span>BAT • Ethereum</span></div></div><div data-value="usdt_tron" data-crypto="true" data-network="trx" data-name="Tether" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-usdt_tron.svg" alt="usdt_tron"><div><span>Tether</span><span>USDT • Tron</span></div></div><div data-value="bnb" data-crypto="true" data-network="bsc" data-name="BNB" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-bnb.svg" alt="bnb"><div><span>BNB</span><span>BNB • Binance Chain</span></div></div><div data-value="busd" data-crypto="true" data-network="bsc" data-name="Binance USD" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-busd.svg" alt="busd"><div><span>Binance USD</span><span>BUSD • Binance Chain</span></div></div><div data-value="usdt_bsc" data-crypto="true" data-network="bsc" data-name="Tether" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-usdt_bsc.svg" alt="usdt_bsc"><div><span>Tether</span><span>USDT • Binance Chain</span></div></div><div data-value="xrp" data-crypto="true" data-network="xrp" data-name="XRP" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-xrp.svg" alt="xrp"><div><span>XRP</span><span>XRP • XRP</span></div></div><div data-value="ltc" data-crypto="true" data-network="ltc" data-name="Litecoin" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-ltc.svg" alt="ltc"><div><span>Litecoin</span><span>LTC • Litecoin</span></div></div><div data-value="doge" data-crypto="true" data-network="doge" data-name="Dogecoin" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-doge.svg" alt="doge"><div><span>Dogecoin</span><span>DOGE • Dogecoin</span></div></div><div data-value="bch" data-crypto="true" data-network="bch" data-name="Bitcoin Cash" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-bch.svg" alt="bch"><div><span>Bitcoin Cash</span><span>BCH • Bitcoin Cash</span></div></div><div data-value="algo" data-crypto="true" data-network="algo" data-name="Algorand" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-algo.svg" alt="algo"><div><span>Algorand</span><span>ALGO • Algorand</span></div></div></div>                        <span class="bxc-title-ul bxc-title-currencies">
+                            Currencies                        </span>
+                        <div class="bxc-select-ul"><div data-value="aed" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ae.svg" alt="AED"><div><span>United Arab Emirates Dirham</span><span>AED</span></div></div><div data-value="afn" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/af.svg" alt="AFN"><div><span>Afghan Afghani</span><span>AFN</span></div></div><div data-value="all" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/al.svg" alt="ALL"><div><span>Albanian Lek</span><span>ALL</span></div></div><div data-value="amd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/am.svg" alt="AMD"><div><span>Armenian Dram</span><span>AMD</span></div></div><div data-value="ang" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/an.svg" alt="ANG"><div><span>Netherlands Antillean Guilder</span><span>ANG</span></div></div><div data-value="aoa" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ao.svg" alt="AOA"><div><span>Angolan Kwanza</span><span>AOA</span></div></div><div data-value="ars" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ar.svg" alt="ARS"><div><span>Argentine Peso</span><span>ARS</span></div></div><div data-value="aud" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/au.svg" alt="AUD"><div><span>Australian Dollar</span><span>AUD</span></div></div><div data-value="awg" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/aw.svg" alt="AWG"><div><span>Aruban Florin</span><span>AWG</span></div></div><div data-value="azn" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/az.svg" alt="AZN"><div><span>Azerbaijani Manat</span><span>AZN</span></div></div><div data-value="bam" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ba.svg" alt="BAM"><div><span>Bosnia-Herzegovina Convertible Mark</span><span>BAM</span></div></div><div data-value="bbd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/bb.svg" alt="BBD"><div><span>Barbadian Dollar</span><span>BBD</span></div></div><div data-value="bdt" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/bd.svg" alt="BDT"><div><span>Bangladeshi Taka</span><span>BDT</span></div></div><div data-value="bgn" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/bg.svg" alt="BGN"><div><span>Bulgarian Lev</span><span>BGN</span></div></div><div data-value="bif" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/bi.svg" alt="BIF"><div><span>Burundian Franc</span><span>BIF</span></div></div><div data-value="bmd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/bm.svg" alt="BMD"><div><span>Bermudan Dollar</span><span>BMD</span></div></div><div data-value="bnd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/bn.svg" alt="BND"><div><span>Brunei Dollar</span><span>BND</span></div></div><div data-value="bob" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/bo.svg" alt="BOB"><div><span>Bolivian Boliviano</span><span>BOB</span></div></div><div data-value="brl" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/br.svg" alt="BRL"><div><span>Brazilian Real</span><span>BRL</span></div></div><div data-value="bsd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/bs.svg" alt="BSD"><div><span>Bahamian Dollar</span><span>BSD</span></div></div><div data-value="bwp" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/bw.svg" alt="BWP"><div><span>Botswanan Pula</span><span>BWP</span></div></div><div data-value="byn" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/by.svg" alt="BYN"><div><span>Belarusian Ruble</span><span>BYN</span></div></div><div data-value="bzd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/bz.svg" alt="BZD"><div><span>Belize Dollar</span><span>BZD</span></div></div><div data-value="cad" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ca.svg" alt="CAD"><div><span>Canadian Dollar</span><span>CAD</span></div></div><div data-value="cdf" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/cd.svg" alt="CDF"><div><span>Congolese Franc</span><span>CDF</span></div></div><div data-value="chf" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ch.svg" alt="CHF"><div><span>Swiss Franc</span><span>CHF</span></div></div><div data-value="clp" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/cl.svg" alt="CLP"><div><span>Chilean Peso</span><span>CLP</span></div></div><div data-value="cny" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/cn.svg" alt="CNY"><div><span>Chinese Yuan</span><span>CNY</span></div></div><div data-value="cop" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/co.svg" alt="COP"><div><span>Colombian Peso</span><span>COP</span></div></div><div data-value="crc" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/cr.svg" alt="CRC"><div><span>Costa Rican Colón</span><span>CRC</span></div></div><div data-value="cve" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/cv.svg" alt="CVE"><div><span>Cape Verdean Escudo</span><span>CVE</span></div></div><div data-value="czk" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/cz.svg" alt="CZK"><div><span>Czech Republic Koruna</span><span>CZK</span></div></div><div data-value="djf" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/dj.svg" alt="DJF"><div><span>Djiboutian Franc</span><span>DJF</span></div></div><div data-value="dkk" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/dk.svg" alt="DKK"><div><span>Danish Krone</span><span>DKK</span></div></div><div data-value="dop" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/do.svg" alt="DOP"><div><span>Dominican Peso</span><span>DOP</span></div></div><div data-value="dzd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/dz.svg" alt="DZD"><div><span>Algerian Dinar</span><span>DZD</span></div></div><div data-value="egp" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/eg.svg" alt="EGP"><div><span>Egyptian Pound</span><span>EGP</span></div></div><div data-value="etb" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/et.svg" alt="ETB"><div><span>Ethiopian Birr</span><span>ETB</span></div></div><div data-value="eur" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/eu.svg" alt="EUR"><div><span>Euro</span><span>EUR</span></div></div><div data-value="fjd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/fj.svg" alt="FJD"><div><span>Fijian Dollar</span><span>FJD</span></div></div><div data-value="fkp" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/fk.svg" alt="FKP"><div><span>Falkland Islands Pound</span><span>FKP</span></div></div><div data-value="gbp" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/gb.svg" alt="GBP"><div><span>British Pound Sterling</span><span>GBP</span></div></div><div data-value="gel" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ge.svg" alt="GEL"><div><span>Georgian Lari</span><span>GEL</span></div></div><div data-value="gip" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/gi.svg" alt="GIP"><div><span>Gibraltar Pound</span><span>GIP</span></div></div><div data-value="gmd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/gm.svg" alt="GMD"><div><span>Gambian Dalasi</span><span>GMD</span></div></div><div data-value="gnf" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/gn.svg" alt="GNF"><div><span>Guinean Franc</span><span>GNF</span></div></div><div data-value="gtq" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/gt.svg" alt="GTQ"><div><span>Guatemalan Quetzal</span><span>GTQ</span></div></div><div data-value="gyd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/gy.svg" alt="GYD"><div><span>Guyanaese Dollar</span><span>GYD</span></div></div><div data-value="hkd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/hk.svg" alt="HKD"><div><span>Hong Kong Dollar</span><span>HKD</span></div></div><div data-value="hnl" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/hn.svg" alt="HNL"><div><span>Honduran Lempira</span><span>HNL</span></div></div><div data-value="htg" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ht.svg" alt="HTG"><div><span>Haitian Gourde</span><span>HTG</span></div></div><div data-value="huf" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/hu.svg" alt="HUF"><div><span>Hungarian Forint</span><span>HUF</span></div></div><div data-value="idr" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/id.svg" alt="IDR"><div><span>Indonesian Rupiah</span><span>IDR</span></div></div><div data-value="ils" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/il.svg" alt="ILS"><div><span>Israeli New Sheqel</span><span>ILS</span></div></div><div data-value="inr" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/in.svg" alt="INR"><div><span>Indian Rupee</span><span>INR</span></div></div><div data-value="isk" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/is.svg" alt="ISK"><div><span>Icelandic Króna</span><span>ISK</span></div></div><div data-value="jmd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/jm.svg" alt="JMD"><div><span>Jamaican Dollar</span><span>JMD</span></div></div><div data-value="jpy" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/jp.svg" alt="JPY"><div><span>Japanese Yen</span><span>JPY</span></div></div><div data-value="kes" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ke.svg" alt="KES"><div><span>Kenyan Shilling</span><span>KES</span></div></div><div data-value="kgs" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/kg.svg" alt="KGS"><div><span>Kyrgystani Som</span><span>KGS</span></div></div><div data-value="khr" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/kh.svg" alt="KHR"><div><span>Cambodian Riel</span><span>KHR</span></div></div><div data-value="kmf" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/km.svg" alt="KMF"><div><span>Comorian Franc</span><span>KMF</span></div></div><div data-value="krw" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/kr.svg" alt="KRW"><div><span>South Korean Won</span><span>KRW</span></div></div><div data-value="kyd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ky.svg" alt="KYD"><div><span>Cayman Islands Dollar</span><span>KYD</span></div></div><div data-value="kzt" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/kz.svg" alt="KZT"><div><span>Kazakhstani Tenge</span><span>KZT</span></div></div><div data-value="lak" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/la.svg" alt="LAK"><div><span>Laotian Kip</span><span>LAK</span></div></div><div data-value="lbp" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/lb.svg" alt="LBP"><div><span>Lebanese Pound</span><span>LBP</span></div></div><div data-value="lkr" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/lk.svg" alt="LKR"><div><span>Sri Lankan Rupee</span><span>LKR</span></div></div><div data-value="lrd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/lr.svg" alt="LRD"><div><span>Liberian Dollar</span><span>LRD</span></div></div><div data-value="lsl" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ls.svg" alt="LSL"><div><span>Lesotho Loti</span><span>LSL</span></div></div><div data-value="mad" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ma.svg" alt="MAD"><div><span>Moroccan Dirham</span><span>MAD</span></div></div><div data-value="mdl" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/md.svg" alt="MDL"><div><span>Moldovan Leu</span><span>MDL</span></div></div><div data-value="mga" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/mg.svg" alt="MGA"><div><span>Malagasy Ariary</span><span>MGA</span></div></div><div data-value="mkd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/mk.svg" alt="MKD"><div><span>Macedonian Denar</span><span>MKD</span></div></div><div data-value="mmk" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/mm.svg" alt="MMK"><div><span>Myanma Kyat</span><span>MMK</span></div></div><div data-value="mnt" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/mn.svg" alt="MNT"><div><span>Mongolian Tugrik</span><span>MNT</span></div></div><div data-value="mop" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/mo.svg" alt="MOP"><div><span>Macanese Pataca</span><span>MOP</span></div></div><div data-value="mur" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/mu.svg" alt="MUR"><div><span>Mauritian Rupee</span><span>MUR</span></div></div><div data-value="mvr" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/mv.svg" alt="MVR"><div><span>Maldivian Rufiyaa</span><span>MVR</span></div></div><div data-value="mwk" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/mw.svg" alt="MWK"><div><span>Malawian Kwacha</span><span>MWK</span></div></div><div data-value="mxn" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/mx.svg" alt="MXN"><div><span>Mexican Peso</span><span>MXN</span></div></div><div data-value="myr" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/my.svg" alt="MYR"><div><span>Malaysian Ringgit</span><span>MYR</span></div></div><div data-value="mzn" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/mz.svg" alt="MZN"><div><span>Mozambican Metical</span><span>MZN</span></div></div><div data-value="nad" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/na.svg" alt="NAD"><div><span>Namibian Dollar</span><span>NAD</span></div></div><div data-value="ngn" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ng.svg" alt="NGN"><div><span>Nigerian Naira</span><span>NGN</span></div></div><div data-value="nio" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ni.svg" alt="NIO"><div><span>Nicaraguan Córdoba</span><span>NIO</span></div></div><div data-value="nok" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/no.svg" alt="NOK"><div><span>Norwegian Krone</span><span>NOK</span></div></div><div data-value="npr" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/np.svg" alt="NPR"><div><span>Nepalese Rupee</span><span>NPR</span></div></div><div data-value="nzd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/nz.svg" alt="NZD"><div><span>New Zealand Dollar</span><span>NZD</span></div></div><div data-value="pab" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/pa.svg" alt="PAB"><div><span>Panamanian Balboa</span><span>PAB</span></div></div><div data-value="pen" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/pe.svg" alt="PEN"><div><span>Peruvian Nuevo Sol</span><span>PEN</span></div></div><div data-value="pgk" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/pg.svg" alt="PGK"><div><span>Papua New Guinean Kina</span><span>PGK</span></div></div><div data-value="php" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ph.svg" alt="PHP"><div><span>Philippine Peso</span><span>PHP</span></div></div><div data-value="pkr" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/pk.svg" alt="PKR"><div><span>Pakistani Rupee</span><span>PKR</span></div></div><div data-value="pln" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/pl.svg" alt="PLN"><div><span>Polish Zloty</span><span>PLN</span></div></div><div data-value="pyg" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/py.svg" alt="PYG"><div><span>Paraguayan Guarani</span><span>PYG</span></div></div><div data-value="qar" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/qa.svg" alt="QAR"><div><span>Qatari Rial</span><span>QAR</span></div></div><div data-value="ron" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ro.svg" alt="RON"><div><span>Romanian Leu</span><span>RON</span></div></div><div data-value="rsd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/rs.svg" alt="RSD"><div><span>Serbian Dinar</span><span>RSD</span></div></div><div data-value="rub" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ru.svg" alt="RUB"><div><span>Russian Ruble</span><span>RUB</span></div></div><div data-value="rwf" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/rw.svg" alt="RWF"><div><span>Rwandan Franc</span><span>RWF</span></div></div><div data-value="sar" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/sa.svg" alt="SAR"><div><span>Saudi Riyal</span><span>SAR</span></div></div><div data-value="sbd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/sb.svg" alt="SBD"><div><span>Solomon Islands Dollar</span><span>SBD</span></div></div><div data-value="scr" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/sc.svg" alt="SCR"><div><span>Seychellois Rupee</span><span>SCR</span></div></div><div data-value="sek" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/se.svg" alt="SEK"><div><span>Swedish Krona</span><span>SEK</span></div></div><div data-value="sgd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/sg.svg" alt="SGD"><div><span>Singapore Dollar</span><span>SGD</span></div></div><div data-value="sll" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/sl.svg" alt="SLL"><div><span>Sierra Leonean Leone</span><span>SLL</span></div></div><div data-value="sos" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/so.svg" alt="SOS"><div><span>Somali Shilling</span><span>SOS</span></div></div><div data-value="srd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/sr.svg" alt="SRD"><div><span>Surinamese Dollar</span><span>SRD</span></div></div><div data-value="szl" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/sz.svg" alt="SZL"><div><span>Swazi Lilangeni</span><span>SZL</span></div></div><div data-value="thb" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/th.svg" alt="THB"><div><span>Thai Baht</span><span>THB</span></div></div><div data-value="tjs" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/tj.svg" alt="TJS"><div><span>Tajikistani Somoni</span><span>TJS</span></div></div><div data-value="top" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/to.svg" alt="TOP"><div><span>Tongan Pa'anga</span><span>TOP</span></div></div><div data-value="try" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/tr.svg" alt="TRY"><div><span>Turkish Lira</span><span>TRY</span></div></div><div data-value="ttd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/tt.svg" alt="TTD"><div><span>Trinidad and Tobago Dollar</span><span>TTD</span></div></div><div data-value="twd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/tw.svg" alt="TWD"><div><span>New Taiwan Dollar</span><span>TWD</span></div></div><div data-value="tzs" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/tz.svg" alt="TZS"><div><span>Tanzanian Shilling</span><span>TZS</span></div></div><div data-value="uah" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ua.svg" alt="UAH"><div><span>Ukrainian Hryvnia</span><span>UAH</span></div></div><div data-value="ugx" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ug.svg" alt="UGX"><div><span>Ugandan Shilling</span><span>UGX</span></div></div><div data-value="usd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/us.svg" alt="USD"><div><span>United States Dollar</span><span>USD</span></div></div><div data-value="uyu" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/uy.svg" alt="UYU"><div><span>Uruguayan Peso</span><span>UYU</span></div></div><div data-value="uzs" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/uz.svg" alt="UZS"><div><span>Uzbekistan Som</span><span>UZS</span></div></div><div data-value="vnd" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/vn.svg" alt="VND"><div><span>Vietnamese Dong</span><span>VND</span></div></div><div data-value="vuv" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/vu.svg" alt="VUV"><div><span>Vanuatu Vatu</span><span>VUV</span></div></div><div data-value="wst" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ws.svg" alt="WST"><div><span>Samoan Tala</span><span>WST</span></div></div><div data-value="yer" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/ye.svg" alt="YER"><div><span>Yemeni Rial</span><span>YER</span></div></div><div data-value="zar" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/za.svg" alt="ZAR"><div><span>South African Rand</span><span>ZAR</span></div></div><div data-value="zmw" data-currency="true" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/flags/zm.svg" alt="ZMW"><div><span>Zambian Kwacha</span><span>ZMW</span></div></div></div>                    </div>
                 </div>
             </div>
-
-        </div>
-        <br><br>
-
-
-        <br><br>
-        <!-- Skills section -->
-        <div class="section py-5 bg-image" data-img-src="/prime/assets/images/upload/skills-bg-image-01.jpg"
-            style="background-image: url(&quot;/prime/assets/images/upload/skills-bg-image-01.jpg&quot;);">
-            <div class="container">
-                <div class="row align-items-center py-5 my-xl-3">
-
-                    <div class="col-lg-6">
-                        <div class="py-3 pr-lg-4 mb-5 mb-lg-0">
-
-                            <h2 class="display-4 font-weight-300 text-primary mb-1">Our Cores</h2>
-
-                            <h2 class="display-4 font-weight-800 text-white mb-4">And Values</h2>
-
-                            <div class="lead-sm text-white-50 mb-5">
-                                As a firm, our sustained success is based on the ability of our people to be at their
-                                best. We want our people to be themselves, be bold, share their unique differences and
-                                form deep relationships that are rooted in trust. We get the best from our people when
-                                they find meaning and purpose in their work and see how their own values and aspirations
-                                can be brought to life through what they do at Fintech Invest Limited.
-                            </div>
-
-                            <div data-height="10px" style="height: 10px;"></div>
-
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-        <div class="section pt-5 pb-4 pb-xl-0">
-
-            <div class="container">
-
-                <div data-height="54px" style="height: 54px;"></div>
-
-                <div class="row">
-                    <h2 class="display-4 font-weight-300 text-primary mb-1">Our Services</h2>
-
-                    <h2 class="display-4 font-weight-800 text-white mb-4">Where we specialize on</h2>
-
-                    <div class="col-md-4">
-                        <img src="/prime/images/industries_oilgas-1036.jpg" width="400px;">
-                        <h4>Oil And Gas</h4>
-                        <p>Surprising as it might be, anyone can invest in the oil market to make a profit. Indeed, the
-                            development of online trading platforms has allowed individuals to use their savings to
-                            speculate on rising or falling oil </p>
-                    </div>
-
-                    <div class="col-md-4">
-                        <img src="/prime/images/agriczz.jpg" width="400px;">
-                        <h4>Agriculture</h4>
-                        <p>Investing in agriculture means putting your money behind food and crop production,
-                            processing, and distribution. As the world needs to feed a growing population and with less
-                            land, interest in agriculture production as an investment has grown right along with the
-                            world population. </p>
-                    </div>
-
-
-                    <div class="col-md-4">
-                        <img src="/prime/images/realzz.jpg" width="400px;">
-                        <h4>Real Estate</h4>
-                        <p>Real estate investment involves the purchase, ownership, management, rental and/or sale of
-                            real estate for profit. Improvement of realty property as part of a real estate investment
-                            strategy generally. </p>
-                    </div>
-
-
-                </div>
-
-            </div>
-
-            <div class="bg-white mt-up125 d-none d-xl-block" data-height="125px" style="height: 125px;"></div>
-
-        </div>
-        <!-- Customer service section -->
-        <div class="section bg-indigo pt-5 pb-4 pb-xl-0">
-
-            <div class="container">
-
-                <div data-height="54px" style="height: 54px;"></div>
-
-                <div class="row">
-
-                    <div class="col-lg-8 offset-lg-2 col-xl-12 offset-xl-0">
-                        <div class="pl-xl-4 mb-4 mb-xl-0">
-
-                            <div data-height="15px" style="height: 15px;"></div>
-
-                            <div class="text-white-75 mb-5">
-
-                                <h2 class="h1 font-weight-800 text-white mb-4">Why Choose Us</h2>
-
-                                <div class="lead-sm">
-                                    Our experts ensure you benefit from total transparency to achieve control and make
-                                    better decisions
-                                </div>
-
-                            </div>
-
-                            <div data-height="15px" style="height: 15px;"></div>
-
-                            <div class="row">
-
-                                <div class="col-md-4">
-                                    <div class="icon-info-1 mb-5">
-                                        <div class="icon-element">
-                                            <img src="/prime/assets/svg/upload/benefit-icon-01.svg" alt="icon"
-                                                class="img-fluid add-animate" data-animated="zoomIn" data-width="42px"
-                                                data-height="42px" style="width: 42px; height: 42px;">
-                                        </div>
-                                        <div class="icon-info-text pl-3 text-white-75">
-                                            <h5 class="font-weight-700 text-white mb-3">Wealth Management</h5>
-                                            <p>
-
-
-                                                Wealth management is an investment advisory service that combines other
-                                                financial services to address the needs of affluent clients. Using a
-                                                consultative process, the advisor gleans information about the client’s
-                                                wants and specific situation, then tailors a personalized strategy that
-                                                uses a range of financial products and services.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="icon-info-1 mb-5">
-                                        <div class="icon-element">
-                                            <img src="/prime/assets/svg/upload/benefit-icon-02.svg" alt="icon"
-                                                class="img-fluid add-animate" data-animated="zoomIn" data-width="42px"
-                                                data-height="42px" style="width: 42px; height: 42px;">
-                                        </div>
-                                        <div class="icon-info-text pl-3 text-white-75">
-                                            <h5 class="font-weight-700 text-white mb-3">Invest Management</h5>
-                                            <p>
-
-
-                                                Portfolio management and asset management are other terms that also
-                                                broadly refer to services that provide oversight of a client’s
-                                                investments. Investment management, however, isn't just about handling
-                                                specific assets in a portfolio — it includes ensuring the portfolio
-                                                continues to align with the client's goals, risk tolerance and financial
-                                                priorities.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="icon-info-1 mb-5">
-                                        <div class="icon-element">
-                                            <img src="/prime/assets/svg/upload/benefit-icon-03.svg" alt="icon"
-                                                class="img-fluid add-animate" data-animated="zoomIn" data-width="42px"
-                                                data-height="42px" style="width: 42px; height: 42px;">
-                                        </div>
-                                        <div class="icon-info-text pl-3 text-white-75">
-                                            <h5 class="font-weight-700 text-white mb-3">Asset Management</h5>
-                                            <p>
-
-
-                                                Here we determine what investments to make, or avoid, to realize the
-                                                client's financial goals within the limits of the client's risk
-                                                tolerance. The investments may include stocks, bonds, real estate,
-                                                commodities, alternative investments, and mutual funds, among the
-                                                better-known choices.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-        </div>
-        <div class="main-content bg-light pb-0">
-            <!-- Pricing tables with image background -->
-            <div class="section bg-white py-5">
-                <div class="container">
-
-                    <div class="row pt-4 pb-5 my-5">
-                        <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-                            <div class="text-center">
-
-                                <h2 class="h1 section-title-3 font-weight-800">Plans</h2>
-
-                                <div class="lead-sm pt-2">
-                                    Investment Plans
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row pb-3 mb-5">
-                        @foreach ($bots as $bot)
-                            <div class="columns">
-                                <ul class="price" style="margin-left: 0px;">
-                                    <li class="header">{{ $bot->name }}</li>
-                                    <li class="grey">Min Amount: ${{ number_format($bot->min) }}</li>
-                                    <li>Max Amount: @if ($bot->max >= 100000000)
-                                            UNLIMITED
-                                        @else
-                                            ${{ number_format($bot->max) }}
-                                        @endif
-                                    </li>
-                                    <li>Profit: {{ $bot->daily_min }}% Daily</li>
-                                    <li>Duration: {{ $bot->duration }} {{ $bot->duration_type }}</li>
-                                    <li>Referral Bonus: @if ($bot->max >= 100000000)
-                                            10%
-                                        @else
-                                            5%
-                                        @endif
-                                    </li>
-                                    <li class="grey"><a href="{{ route('user.register') }}" class="button">Sign Up</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        @endforeach
+            <div id="bxc-error-pay" class="bxc-error"></div>
+            <div class="bxc-title">
+                You get            </div>
+            <div id="bxc-get" class="bxc-input bxc-input-select bxc-active">
+                <div class="bxc-1">
+                    <input id="bxc-get-amount" type="number" autocomplete="one-time-code">
+                    <div data-crypto="true" data-value="btc" data-network="btc" data-name="Bitcoin">
+                        <img src="https://boxcoin.dev/demo/admin_exchange/media/icon-btc.svg" alt="btc">
+                        <span>btc</span>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- Testimonials section -->
-        <!-- Testimonials section -->
-        <div class="section pt-5">
-            <div class="container">
-                <div class="pt-5">
-                    <div class="row">
-
-                        <div class="col-lg-5 pb-4 pb-lg-0 mb-5 mb-lg-0">
-
-                            <h2 class="h1 font-weight-800 mb-4">What Clients Say</h2>
-
-                            <div class="lead-sm">
-                                Few testimonials of what our clients think about us.
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6 offset-lg-1">
-                            <div class="testimonial-2 pb-4 pb-md-0 mb-5 add-animate" data-animated="fadeInRight">
-                                <div class="testimonial-image">
-                                    <figure>
-                                        <img class="img-fluid"
-                                            src="/prime/assets/images/upload/testimonial-thumbnail-1.jpg"
-                                            alt="testimonial">
-                                    </figure>
-                                </div>
-                                <div class="testimonial-details">
-                                    <div class="font-italic">
-                                        <p>Without Ligrace Holdings, we would have gone bankrupt by now. I didn't even
-                                            need training. This is simply unbelievable! The best on the net!</p>
-                                    </div>
-                                    <div class="tesimonial-name">
-                                        Bruce Romero
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 offset-lg-3">
-                            <div class="testimonial-2 pb-4 pb-md-0 mb-5 add-animate" data-animated="fadeInRight">
-                                <div class="testimonial-image">
-                                    <figure>
-                                        <img class="img-fluid"
-                                            src="/prime/assets/images/upload/testimonial-thumbnail-2.jpg"
-                                            alt="testimonial">
-                                    </figure>
-                                </div>
-                                <div class="testimonial-details">
-                                    <div class="font-italic">
-                                        <p>I can't say enough about Ligrace Holdings. Ligrace Holdings has really
-                                            helped my life.</p>
-                                    </div>
-                                    <div class="tesimonial-name">
-                                        Linda Murray
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6">
-
-                            <div class="testimonial-2 mb-5 add-animate" data-animated="fadeInRight">
-                                <div class="testimonial-image">
-                                    <figure>
-                                        <img class="img-fluid"
-                                            src="/prime/assets/images/upload/testimonial-thumbnail-3.jpg"
-                                            alt="testimonial">
-                                    </figure>
-                                </div>
-                                <div class="testimonial-details">
-                                    <div class="font-italic">
-                                        <p>Thank you for making it painless, pleasant and most of all hassle free!
-                                            Ligrace Holdings is the real deal! I have gotten at least 10 times the
-                                            value from Ligrace Holdings.</p>
-                                    </div>
-                                    <div class="tesimonial-name">
-                                        Mark Burdette
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-
-
+                <div class="bxc-2">
+                    <div class="bxc-2-1">
+                        <i class="bxc-icon-search"></i>
+                        <input class="bxc-search-input" type="text" name="bxc-search" placeholder="Search..." autocomplete="one-time-code">
+                        <i class="bxc-icon-close"></i>
                     </div>
+                    <div class="bxc-2-2 bxc-scrollbar">
+                        <div class="bxc-select-ul"><div data-value="btc" data-crypto="true" data-network="btc" data-name="Bitcoin" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-btc.svg" alt="btc"><div><span>Bitcoin</span><span>BTC • Bitcoin</span></div></div><div data-value="eth" data-crypto="true" data-network="eth" data-name="Ethereum" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-eth.svg" alt="eth"><div><span>Ethereum</span><span>ETH • Ethereum</span></div></div><div data-value="usdt" data-crypto="true" data-network="eth" data-name="Tether" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-usdt.svg" alt="usdt"><div><span>Tether</span><span>USDT • Ethereum</span></div></div><div data-value="usdc" data-crypto="true" data-network="eth" data-name="USD Coin" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-usdc.svg" alt="usdc"><div><span>USD Coin</span><span>USDC • Ethereum</span></div></div><div data-value="link" data-crypto="true" data-network="eth" data-name="Chainlink" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-link.svg" alt="link"><div><span>Chainlink</span><span>LINK • Ethereum</span></div></div><div data-value="shib" data-crypto="true" data-network="eth" data-name="Shiba Inu" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-shib.svg" alt="shib"><div><span>Shiba Inu</span><span>SHIB • Ethereum</span></div></div><div data-value="bat" data-crypto="true" data-network="eth" data-name="Basic Attention Token" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-bat.svg" alt="bat"><div><span>Basic Attention Token</span><span>BAT • Ethereum</span></div></div></div>                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Call to action section -->
-        <div class="section">
-            <div class="container-fluid p-0">
-                <div class="row no-gutters">
-
-                    <div class="col-lg-6 bg-image" data-img-src="/prime/assets/images/cdc-i71ZRcnqqvw-unsplash.jpg"
-                        style="background-image: url(&quot;/prime/assets/images/cdc-i71ZRcnqqvw-unsplash.jpg&quot;);">
-                        <div class="d-lg-none" data-height="70vw" style="height: 70vw;"></div>
-                    </div>
-
-                    <div class="col-lg-6 bg-light p-4 p-md-5">
-                        <div class="row no-gutters">
-                            <div class="col-md-8 offset-md-2 col-lg-12 offset-lg-0 col-xl-8 offset-xl-2 text-center">
-
-                                <div data-height="100px" style="height: 100px;"></div>
-
-                                <h5 class="font-weight-400">
-
-                                    Don't Hesitate to Invest Now
-                                </h5>
-
-                                <div data-height="3px" style="height: 3px;"></div>
-
-                                <h2 class="h1 font-weight-800 mb-3"> We Will Give You The Best!</h2>
-
-                                <div class="lead-sm mb-5">
-                                    Our objective is to deliver attractive investment performance over the
-                                    medium-to-long-term, enabling clients to meet their investment goals. We do this by
-                                    providing cost-effective access to a professionally managed service, supported by
-                                    in-depth financial analysis and insights.
-                                </div>
-
-                                <div data-height="10px" style="height: 10px;"></div>
-
-                                <a href="{{ route('user.register') }}" class="btn btn-lg btn-round btn-primary mb-0">Join
-                                    Us!</a>
-
-                                <div data-height="100px" style="height: 100px;"></div>
-
-                            </div>
-                        </div>
-                    </div>
-
+            <div class="bxc-title bxc-title-summary bxc-title-summary-start bxc-active">
+                Summary<span id="bxc-quote-update" class="bxc-flex"><i class="bxc-icon-clock"></i>Quote updates in 3s</span>
+            </div>
+            <div id="bxc-summary" class="bxc-summary bxc-active">
+                <div class="bxc-1">You get <b>0.0000327 BTC</b> for <b>0.00004577 BTC</b></div>
+                <div class="bxc-2"><span class="bxc-flex"><span>0.0000327<i> @ 1 BTC</i></span><span>0.0000327 BTC</span></span><span class="bxc-flex"><span>Network fee <i class="bxc-icon-help bxc-toolip-cnt"><span class="bxc-toolip">The blockchain fee</span></i></span><span>0.00001078 BTC</span></span><span class="bxc-flex"><span>Processing fee <i class="bxc-icon-help bxc-toolip-cnt"><span class="bxc-toolip">The fee charged by us</span></i></span><span>0.00000228 BTC</span></span></div>
+            </div>
+            <div id="bxc-btn-exchange-1" class="bxc-btn bxc-icon-after bxc-btn-main">
+                Continue            </div>
+            <div class="bxc-footer">By continuing you agree to our <a href="https://boxcoin.dev/cookie" target="_blank">cookie policy</a>.</div>        </div>
+                <div id="bxc-panel-address" class="bxc-panel">
+            <div class="bxc-title"></div>
+            <div id="bxc-get-address" class="bxc-input bxc-active">
+                <input type="text" autocomplete="one-time-code">
+                <img src="" alt="">
+            </div>
+            <div id="bxc-error-address" class="bxc-error"></div>
+            <div class="bxc-text"></div>
+            <div id="bxc-btn-exchange-2" class="bxc-btn bxc-icon-after bxc-btn-main bxc-disabled">
+                Continue            </div>
+            <div class="bxc-footer">By continuing you confirm that you own and have control of this wallet.</div>        </div>
+                <div id="bxc-panel-payment" class="bxc-panel">
+            <div class="bxc-title">
+                You pay with<i data-back="address" class="bxc-icon-arrow-left"></i>
+            </div>
+            <div class="bxc-paymet-method">
+                <div data-payment-method="stripe" class="bxc-flex bxc-active"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-cc.svg" alt="Credit or debit card"><span>Credit or debit card</span></div><div data-payment-method="paypal" class="bxc-flex"><img src="https://boxcoin.dev/demo/admin_exchange/media/icon-pp-2.svg" alt="PayPal"><span>PayPal</span></div>                <div data-payment-method="crypto" class="bxc-flex">
+                    <img src="" alt="">
+                    <div></div>
                 </div>
             </div>
+            <div id="bxc-payment-address-title" class="bxc-title"></div>
+            <div id="bxc-payment-address" class="bxc-input bxc-active">
+                <input type="text" disabled="">
+                <img src="" alt="">
+            </div>
+            <div id="bxc-payment-address-fiat"></div>
+            <div class="bxc-title bxc-title-summary bxc-title-summary-payment">
+                Summary<span id="bxc-quote-update" class="bxc-flex"></span>
+            </div>
+            <div id="bxc-summary-payment" class="bxc-summary">
+                <div class="bxc-1"></div>
+                <div class="bxc-2"></div>
+            </div>
+            <div id="bxc-btn-exchange-3" class="bxc-btn bxc-icon-after bxc-btn-main bxc-disabled">
+                Pay            </div>
+            <div class="bxc-footer">By clicking Pay you agree to our <a href="https://boxcoin.dev/terms-of-service" target="_blank">Terms of Service</a> and <a href="https://boxcoin.dev/privacy" target="_blank">Privacy Policy</a>.</div>        </div>
+        <div id="bxc-panel-processing" class="bxc-panel">
+            <div class="bxc-loading"></div>
+            <div class="bxc-title">
+                We are confirming your payment...            </div>
+            <div class="bxc-footer">Problems? Contact us at support@boxcoin.dev and send your Order ID.</div>            <div id="bxc-cancel-verify-payment" class="bxc-link">
+                <div class="bxc-icon-close"></div>Cancel            </div>
         </div>
-    @endsection
+        <div id="bxc-panel-finish" class="bxc-panel">
+            <div class="bxc-icon-check"></div>
+            <div id="bxc-finish-text" class="bxc-title"></div>
+            <a id="bxc-transaction-link" href="#" class="bxc-underline bxc-loading">
+                View transaction            </a>
+            <div class="bxc-footer">Problems? Contact us at support@boxcoin.dev and send your Order ID.</div>        </div>
+            </div>
+</div>
 
-    @section('scripts')
-        {{-- spining image --}}
-
-        <script>
-            const circle = document.querySelector('.circle');
-            const images = document.querySelectorAll('.floating-image');
-            const numImages = images.length;
-            const deviceWidth = window.innerWidth;
-
-            let radius;
-            if (deviceWidth > 766) {
-                radius = Math.min(circle.clientWidth / 2, circle.clientHeight / 2) - 25;
-            } else {
-                radius = deviceWidth; // Use a specific value for small deviceWidth
-            }
-
-            function moveImageInCircleAndSpin(img, centerX, centerY, angle) {
-                const x = centerX + radius * Math.cos(angle);
-                const y = centerY + radius * Math.sin(angle);
-                const rotation = angle * (180 / Math.PI);
-
-                img.style.left = `${x}px`;
-                img.style.top = `${y}px`;
-                img.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
-
-                const newAngle = angle + 0.01; // Adjust the rotation speed here
-                const randomDelay = Math.random() * 10; // Small delay to adjust rotation phase
-                setTimeout(() => {
-                    moveImageInCircleAndSpin(img, centerX, centerY, newAngle);
-                }, randomDelay);
-            }
-
-            function initializeImagePositions() {
-                const centerX = circle.clientWidth / 2;
-                const centerY = circle.clientHeight / 2;
-
-                images.forEach((img, index) => {
-                    const angle = (index / numImages) * 2 * Math.PI;
-                    moveImageInCircleAndSpin(img, centerX, centerY, angle);
-                });
-            }
-
-            initializeImagePositions();
-        </script>
-
-
-        {{-- moving image --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('.looping-image').owlCarousel({
-                    loop: true,
-                    margin: 5,
-                    autoplay: true,
-                    autoplayTimeout: 6000,
-                    autoplaySpeed: 600,
-                    dots: false,
-                    responsiveClass: true,
-                    responsive: {
-                        0: {
-                            items: 5,
-                        },
-                        600: {
-                            items: 10,
-                        },
-                        1000: {
-                            items: 10,
-                        }
-                    }
-                });
-
-                $('.reviews').owlCarousel({
-                    loop: true,
-                    margin: 5,
-                    autoplay: true,
-                    autoplayTimeout: 6000,
-                    autoplaySpeed: 600,
-                    dots: false,
-                    responsiveClass: true,
-                    responsive: {
-                        0: {
-                            items: 1,
-                        },
-                        600: {
-                            items: 1,
-                        },
-                        1000: {
-                            items: 1,
-                        }
-                    }
-                });
-
-                $('.deposits').owlCarousel({
-                    loop: true,
-                    margin: 5,
-                    autoplay: true,
-                    autoplayTimeout: 3000,
-                    autoplaySpeed: 600,
-                    dots: false,
-                    responsiveClass: true,
-                    responsive: {
-                        0: {
-                            items: 1,
-                        },
-                        600: {
-                            items: 1,
-                        },
-                        1000: {
-                            items: 3,
-                        }
-                    }
-                });
-            });
-        </script>
-
-
-        {{-- globe --}}
-        <script src="//unpkg.com/globe.gl"></script>
-        <script>
-            fetch("{{ route('places') }}").then(res => res.json()).then(places => {
-
-                const globeInstance = Globe()
-                    .globeImageUrl("{{ asset('assets/images/earth-night.jpg') }}")
-                    .backgroundImageUrl("{{ asset('assets/images/ts-gray-1.png') }}")
-                    .labelsData(places.features)
-                    .labelLat(d => d.properties.latitude)
-                    .labelLng(d => d.properties.longitude)
-                    .labelText(d => d.properties.name)
-                    .labelSize(d => Math.sqrt(d.properties.pop_max) * 4e-4)
-                    .labelDotRadius(d => Math.sqrt(d.properties.pop_max) * 4e-4)
-                    .labelColor(() => 'rgba(255, 165, 0, 0.75)')
-                    .labelResolution(2)
-
-                (document.getElementById('globeViz'))
-
-
-            });
-        </script>
-
-        {{-- schuffle recent trades --}}
-        <script>
-            function updateTradeTimes() {
-                const tradeTimeElements = document.querySelectorAll('.recent_trade_time');
-                const currentTime = new Date().toLocaleTimeString();
-
-                tradeTimeElements.forEach((element) => {
-                    element.textContent = currentTime;
-                });
-            }
-
-            function shuffleAndDisplayRecentTrades() {
-                const tradesDiv = document.getElementById('recentTrades');
-                const trades = Array.from(tradesDiv.children);
-
-                trades.sort(() => Math.random() - 0.5); // Shuffle the array
-
-                // Remove the existing trade divs
-                while (tradesDiv.firstChild) {
-                    tradesDiv.removeChild(tradesDiv.firstChild);
-                }
-
-                // Append the first 10 shuffled trade divs back to the container
-                for (let i = 0; i < 20 && i < trades.length; i++) {
-                    tradesDiv.appendChild(trades[i]);
-                }
-
-                updateTradeTimes(); // Update trade times after shuffling
-            }
-
-            // Initial shuffle and display
-            shuffleAndDisplayRecentTrades();
-
-            // Set interval to shuffle and update times every second (1000 milliseconds)
-            setInterval(shuffleAndDisplayRecentTrades, 1000);
-
-            // update every 5 minutes
-            function updateRecentTrades() {
-                // Use jQuery to make an AJAX request to the server
-                $.ajax({
-                    url: window.location.href,
-                    method: 'GET',
-                    dataType: 'html',
-                    success: function(response) {
-                        // Update the content of the recentTradesContainer div
-                        var targetDiv = '#recentTradesContainer';
-                        $(targetDiv).html($(response).find(targetDiv).html());
-                        updateTradeTimes();
-                        $('#deposits').html($(response).find('#deposits').html());
-
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error fetching data:', error);
-                    }
-                });
-            }
-
-            setInterval(updateRecentTrades, 10000);
-        </script>
-
-        {{-- apply bot class --}}
-        <script>
-            const divElement = document.getElementById('hows-bot');
-            const classes = ['hows-bot-orange', 'hows-bot-green', 'hows-bot-blue', 'hows-bot-purple'];
-            let currentIndex = 0;
-
-            function applyNextClass() {
-                divElement.className = classes[currentIndex];
-                currentIndex = (currentIndex + 1) % classes.length;
-            }
-
-            setInterval(applyNextClass, 5000);
-        </script>
-    @endsection
+@endsection
